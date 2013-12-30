@@ -25,19 +25,20 @@ def basic_result(json_data):
     basic_explain = basic_trans.get('explains')
     return json.dumps(basic_explain,ensure_ascii=False)
 
+params = {}
+params['keyfrom'] = 'neutronest-blog'
+params['key'] = '1373749244'
+params['type'] = 'data'
+params['doctype'] = 'json'
+params['version'] = '1.1'
+
 def callback():
-	params = {}
-	params['keyfrom'] = 'neutronest-blog'
-	params['key'] = '1373749244'
-	params['type'] = 'data'
-	params['doctype'] = 'json'
-	params['version'] = '1.1'
-	params['q'] = v1.get()
-	data = urllib.urlencode(params)
-	req = urllib2.Request(INIT_URL,data)
-	res = urllib2.urlopen(req)
-	data = res.read()
-	showresult(data)
+    params['q'] = v1.get()
+    data = urllib.urlencode(params)
+    req = urllib2.Request(INIT_URL,data)
+    res = urllib2.urlopen(req)
+    data = res.read()
+    showresult(data)
 
 def showresult(data):
 	v2.set(basic_result(data))
