@@ -1,10 +1,8 @@
 
-#coding: utf-8
+# coding: utf-8
 # auther: Loveice && neutronest
 # 
-'''
-fanyi.youdao.com/openapi.do?keyfrom=neutronest-blog&key=1373749244&type=data&doctype=<doctype>&version=1.1&q=your word
-'''
+
 import sys
 import requests
 import httplib
@@ -26,18 +24,6 @@ def basic_result(json_data):
     basic_trans = data.get('basic')
     basic_explain = basic_trans.get('explains')
     return json.dumps(basic_explain,ensure_ascii=False)
-
-def web_result(json_data):
-    data = json.loads(json_data)
-    if data == "":
-        return
-    web_trans = {}
-    web_data = data.get('web')
-    if web_data == None:
-        return "没有拓展词义"
-    for item in web_data:
-        web_trans[item.get('key')] = item.get('value')
-    return json.dumps(web_trans,ensure_ascii=False)
 
 def callback():
 	params = {}
